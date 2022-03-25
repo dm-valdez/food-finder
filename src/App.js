@@ -9,10 +9,6 @@ import DialogActions from '@material-ui/core/DialogActions'
 import Header from './components/HeaderComponent';
 import Recipe from './components/RecipeComponent';
 
-
-const APP_ID = "b8481ba5";
-const APP_KEY = "16c7f9de9ce6dee28a50b50621ab4669";
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -78,7 +74,7 @@ function App() {
 
   const fetchRecipe = async (searchString) => {
     const response = await axios.get(
-      `https://api.edamam.com/api/recipes/v2?type=public&q=${searchString}&app_id=${APP_ID}&app_key=${APP_KEY}`
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${searchString}&app_id=${process.env.REACT_APP_FOOD_ID}&app_key=${process.env.REACT_APP_FOOD_KEY}`
     );
     updateRecipeList(response.data.hits);
   };
@@ -88,7 +84,6 @@ function App() {
     const timeout = setTimeout(() => fetchRecipe(event.target.value), 500);
     updateTimoutId(timeout);
   };
-
 
   return (
     <Container>
