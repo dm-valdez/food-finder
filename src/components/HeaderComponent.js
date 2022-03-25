@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Header = styled.div`
-  color: white;
-  background-color: #888;
+  color: #4d3d36;
+  background-color: #ffe6b8;
   display: flex;
   flex-direction: row;
   align-items: center;

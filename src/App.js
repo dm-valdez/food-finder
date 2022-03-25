@@ -27,7 +27,7 @@ const RecipeListContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-const Placeholder = styled.img `
+const Placeholder = styled.img`
   width: 320px;
   height: 320px;
   margin: 200px;
@@ -40,20 +40,20 @@ const RecipeComponent = (props) => {
   return (
     <>
       <Dialog open={show}>
-        <DialogTitle id="alert-dialog-slide-title">Ingredients</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">{recipeObj.label}</DialogTitle>
         <DialogContent>
           <table>
             <thead>
-              <th>Ingredients</th>
-              <th>Weight</th>
+              <tr>
+                <th>Ingredients</th>
+              </tr>
             </thead>
             <tbody>
               {recipeObj.ingredients.map((ingredientObj) => (
                 <tr>
-                <td>{ingredientObj.text}</td>
-                <td>{ingredientObj.weight}</td>
-              </tr>
-              ))}  
+                  <td>{ingredientObj.text}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </DialogContent>
@@ -93,7 +93,7 @@ function App() {
   return (
     <Container>
       <Header.Header>
-        <Header.AppNameComponent><Header.AppIcon src='/recipe-icon.svg' />Find Food Recipe</Header.AppNameComponent>
+        <Header.AppNameComponent><Header.AppIcon src='/recipe-icon.svg' />Food Finder</Header.AppNameComponent>
         <Header.SearchComponent>
           <Header.SearchIcon src="/search-icon.svg" />
           <Header.SearchInput placeholder='Search Food' onChange={onTextChange} />
