@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogActions from '@material-ui/core/DialogActions'
 
 import {
   Header,
@@ -37,15 +41,48 @@ const RecipeListContainer = styled.div`
   justify-content: space-evenly;
 `;
 
+const Placeholder = styled.img `
+  width: 320px;
+  height: 320px;
+  margin: 200px;
+  opacity: 50%;
+`;
+
 const RecipeComponent = (props) => {
+  const [show, setShow] = useState(false);
   const { recipeObj } = props;
   return (
-    <RecipeContainer>
-      <CoverImage src={recipeObj.image} />
-      <RecipeName>{recipeObj.label}</RecipeName>
-      <IngredientsText>Ingredients</IngredientsText>
-      <CompleteRecipe onClick={() => window.open(recipeObj.url)}>Complete Recipe</CompleteRecipe>
-    </RecipeContainer>
+    <>
+      <Dialog open={show}>
+        <DialogTitle id="alert-dialog-slide-title">Ingredients</DialogTitle>
+        <DialogContent>
+          <table>
+            <thead>
+              <th>Ingredients</th>
+              <th>Weight</th>
+            </thead>
+            <tbody>
+              {recipeObj.ingredients.map((ingredientObj) => (
+                <tr>
+                <td>{ingredientObj.text}</td>
+                <td>{ingredientObj.weight}</td>
+              </tr>
+              ))}  
+            </tbody>
+          </table>
+        </DialogContent>
+        <DialogActions>
+          <IngredientsText onClick={() => window.open(recipeObj.url)}>See More</IngredientsText>
+          <CompleteRecipe onClick={() => setShow("")}>Close</CompleteRecipe>
+        </DialogActions>
+      </Dialog>
+      <RecipeContainer>
+        <CoverImage src={recipeObj.image} />
+        <RecipeName>{recipeObj.label}</RecipeName>
+        <IngredientsText onClick={() => setShow(true)}>Ingredients</IngredientsText>
+        <CompleteRecipe onClick={() => window.open(recipeObj.url)}>Complete Recipe</CompleteRecipe>
+      </RecipeContainer>
+    </>
   );
 };
 
@@ -77,12 +114,13 @@ function App() {
         </SearchComponent>
       </Header>
       <RecipeListContainer>
-        {recipeList.length && recipeList.map((recipeObj) => (
-          <RecipeComponent recipeObj={recipeObj.recipe} />
-        ))}
-
-
-
+        {recipeList.length ? (
+          recipeList.map((recipeObj) => (
+            <RecipeComponent recipeObj={recipeObj.recipe} />
+          ))
+        ) : (
+          <Placeholder src='/recipe-icon.svg' />
+        )}
       </RecipeListContainer>
     </Container>
   );

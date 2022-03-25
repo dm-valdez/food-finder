@@ -10,6 +10,7 @@ export const RecipeContainer = styled.div`
 
 export const CoverImage = styled.img`
   height: 200px;
+  object-fit: cover;
 `;
 export const RecipeName = styled.span`
   font-size: 18px;
