@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Header = styled.div`
+const Header = styled.div`
   color: white;
   background-color: #888;
   display: flex;
@@ -14,16 +14,16 @@ export const Header = styled.div`
   height: 50px;
 `;
 
-export const AppNameComponent = styled.div`
+const AppNameComponent = styled.div`
   display: flex;
   align-items: center;
 `;
-export const AppIcon = styled.img`
+const AppIcon = styled.img`
   width: 50px;
   height: 50px;
   margin: 15px;
 `;
-export const SearchComponent = styled.div`
+const SearchComponent = styled.div`
   display: flex;
   flex-direction: row;
   background-color: white;
@@ -32,15 +32,24 @@ export const SearchComponent = styled.div`
   width: 20%;
 `;
 
-export const SearchIcon = styled.img`
+const SearchIcon = styled.img`
   width: 25px;
   height: 25px;
 `;
 
-export const SearchInput = styled.input`
+const SearchInput = styled.input`
   border: none;
   outline: none;
   width: 100%;
   margin-left: 15px;
   font-size: 16px;
 `;
+
+export default {
+    Header,
+    AppNameComponent,
+    AppIcon,
+    SearchComponent,
+    SearchIcon,
+    SearchInput
+};

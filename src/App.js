@@ -6,22 +6,8 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
 
-import {
-  Header,
-  AppNameComponent,
-  AppIcon,
-  SearchComponent,
-  SearchIcon,
-  SearchInput
-} from './components/HeaderComponent';
-
-import {
-  RecipeContainer,
-  CoverImage,
-  RecipeName,
-  IngredientsText,
-  CompleteRecipe
-} from './components/RecipeComponent';
+import Header from './components/HeaderComponent';
+import Recipe from './components/RecipeComponent';
 
 
 const APP_ID = "b8481ba5";
@@ -72,16 +58,16 @@ const RecipeComponent = (props) => {
           </table>
         </DialogContent>
         <DialogActions>
-          <IngredientsText onClick={() => window.open(recipeObj.url)}>See More</IngredientsText>
-          <CompleteRecipe onClick={() => setShow("")}>Close</CompleteRecipe>
+          <Recipe.IngredientsText onClick={() => window.open(recipeObj.url)}>See More</Recipe.IngredientsText>
+          <Recipe.CompleteRecipe onClick={() => setShow("")}>Close</Recipe.CompleteRecipe>
         </DialogActions>
       </Dialog>
-      <RecipeContainer>
-        <CoverImage src={recipeObj.image} />
-        <RecipeName>{recipeObj.label}</RecipeName>
-        <IngredientsText onClick={() => setShow(true)}>Ingredients</IngredientsText>
-        <CompleteRecipe onClick={() => window.open(recipeObj.url)}>Complete Recipe</CompleteRecipe>
-      </RecipeContainer>
+      <Recipe.RecipeContainer>
+        <Recipe.CoverImage src={recipeObj.image} />
+        <Recipe.RecipeName>{recipeObj.label}</Recipe.RecipeName>
+        <Recipe.IngredientsText onClick={() => setShow(true)}>Ingredients</Recipe.IngredientsText>
+        <Recipe.CompleteRecipe onClick={() => window.open(recipeObj.url)}>Complete Recipe</Recipe.CompleteRecipe>
+      </Recipe.RecipeContainer>
     </>
   );
 };
@@ -106,13 +92,13 @@ function App() {
 
   return (
     <Container>
-      <Header>
-        <AppNameComponent><AppIcon src='/recipe-icon.svg' />Find Food Recipe</AppNameComponent>
-        <SearchComponent>
-          <SearchIcon src="/search-icon.svg" />
-          <SearchInput placeholder='Search Food' onChange={onTextChange} />
-        </SearchComponent>
-      </Header>
+      <Header.Header>
+        <Header.AppNameComponent><Header.AppIcon src='/recipe-icon.svg' />Find Food Recipe</Header.AppNameComponent>
+        <Header.SearchComponent>
+          <Header.SearchIcon src="/search-icon.svg" />
+          <Header.SearchInput placeholder='Search Food' onChange={onTextChange} />
+        </Header.SearchComponent>
+      </Header.Header>
       <RecipeListContainer>
         {recipeList.length ? (
           recipeList.map((recipeObj) => (

@@ -33,3 +33,11 @@ export const CompleteRecipe = styled(IngredientsText)`
   color: #eb3300;
   border: solid 1px #eb3300;
 `;
+
+export default {
+    RecipeContainer,
+    CoverImage,
+    RecipeName,
+    IngredientsText,
+    CompleteRecipe
+};
