@@ -29,12 +29,13 @@ const Placeholder = styled.img`
   margin: 200px;
   opacity: 50%;
 `;
-
+// set a component that will be map for display
 const RecipeComponent = (props) => {
   const [show, setShow] = useState(false);
   const { recipeObj } = props;
   return (
     <>
+    {/* when the ingredients button is pressed, a pop-up dialog with the food's ingredients appears */}
       <Dialog open={show}>
         <DialogTitle id="alert-dialog-slide-title">{recipeObj.label}</DialogTitle>
         <DialogContent>
@@ -68,10 +69,12 @@ const RecipeComponent = (props) => {
   );
 };
 
+
 function App() {
   const [timeoutId, updateTimoutId] = useState();
   const [recipeList, updateRecipeList] = useState([]);
 
+  // get the data from EDAMAM API
   const fetchRecipe = async (searchString) => {
     const response = await axios.get(
       `https://api.edamam.com/api/recipes/v2?type=public&q=${searchString}&app_id=${process.env.REACT_APP_FOOD_ID}&app_key=${process.env.REACT_APP_FOOD_KEY}`
@@ -79,6 +82,7 @@ function App() {
     updateRecipeList(response.data.hits);
   };
 
+  // set a 0.5 second delay for a search request
   const onTextChange = (event) => {
     clearTimeout(timeoutId)
     const timeout = setTimeout(() => fetchRecipe(event.target.value), 500);
@@ -88,19 +92,20 @@ function App() {
   return (
     <Container>
       <Header.Header>
-        <Header.AppNameComponent><Header.AppIcon src='/recipe-icon.svg' />Food Finder</Header.AppNameComponent>
+        <Header.AppNameComponent><Header.AppIcon src='/icons/recipe-icon.svg' />Food Finder</Header.AppNameComponent>
         <Header.SearchComponent>
-          <Header.SearchIcon src="/search-icon.svg" />
+          <Header.SearchIcon src="/icons/search-icon.svg" />
           <Header.SearchInput placeholder='Search Food' onChange={onTextChange} />
         </Header.SearchComponent>
       </Header.Header>
       <RecipeListContainer>
+        {/* displaying all data found by search input, if not set the placeholder icon */}
         {recipeList.length ? (
           recipeList.map((recipeObj) => (
             <RecipeComponent recipeObj={recipeObj.recipe} />
           ))
         ) : (
-          <Placeholder src='/recipe-icon.svg' />
+          <Placeholder src='/icons/recipe-icon.svg' />
         )}
       </RecipeListContainer>
     </Container>
