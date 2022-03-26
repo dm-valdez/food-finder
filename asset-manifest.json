@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/food-finder/static/css/main.cce81879.css",
+    "main.js": "/food-finder/static/js/main.6e02754c.js",
+    "index.html": "/food-finder/index.html",
+    "main.cce81879.css.map": "/food-finder/static/css/main.cce81879.css.map",
+    "main.6e02754c.js.map": "/food-finder/static/js/main.6e02754c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cce81879.css",
+    "static/js/main.6e02754c.js"
+  ]
+}
